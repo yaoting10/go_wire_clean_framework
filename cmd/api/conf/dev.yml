@@ -1,0 +1,88 @@
+http:
+  ip: 127.0.0.1
+  port: 8080
+  env: dev
+asset:
+  page:
+    path: web
+i18n:
+   path: conf/i18n
+job:
+  # xxl服务端地址
+  server-url: http://127.0.0.1:5678/xxl-job-admin
+  # 任务执行 token, 必须与服务端配置一致
+  token: your-job-token
+  # 执行器名称，服务端添加执行器时使用该名称
+  executor-name: your-job-executor
+
+db:
+  # write/read db
+  - name: wdb
+    host: 127.0.0.1
+    port: 3306
+    database: test
+    username: root
+    password: 123456
+    show-sql: true
+    params: charset=utf8mb4&parseTime=True&loc=UTC
+  # read-only db
+  - name: rdb
+    host: 127.0.0.1
+    port: 3306
+    database: test
+    username: root
+    password: 123456
+    show-sql: true
+    params: charset=utf8mb4&parseTime=True&loc=UTC
+# redis configuration
+redis:
+  db: 1
+  addr: 127.0.0.1:65535
+  password:
+  tls: false
+  cluster: false
+# mogodb
+mongo:
+  host: 127.0.0.1
+  port: 27017
+  auth-source: admin
+  username: root
+  password: 123456
+  database: test
+zap:
+  level: debug
+  prefix: ''
+  format: text
+  director: logs
+  encode-level: cap
+  stacktrace-key: stacktrace
+  max-age: 0
+  show-line: true
+  log-in-console: true
+auth:
+  skip-url: /favicon.ico,/job/**,/run,/kill,/log,/beat,/idleBeat,/sys/**,/demo/**
+  fixed-token-url: /login/**,/portal/login/**,/system/setting,/system/setting/**,/portal/system/setting,/portal/system/setting/**,/twitter/**,/portal/twitter/**
+  fix-token:
+  captcha-key:
+portal:
+  url:
+#aws-s3 config
+aws-s3:
+  region:
+  access-key-id:
+  access-key-secret:
+  bucket:
+  preview-url:
+
+#mail config
+mail:
+  server:
+  supportDomain:
+
+twitter:
+  clientId:
+  clientSecret:
+  redirectUrl:
+
+google:
+  captcha-key:

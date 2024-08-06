@@ -1,0 +1,13 @@
+# 系统配置
+invalid_param: "invalid param"
+# 登录注册
+invalid_invite_code: "invalid invite code"
+account_not_exist: "email not found"
+invalid_email: "invalid email"
+email_registered: "email registered already"
+invalid_verify_code: "invalid verify code"
+password_error: "invalid account or password"
+#用户
+nick_name_over_limit: "your nickname length is over limit"
+intro_over_limit: "your introduction length is over limit"
+name_over_limit: "your nickname length is over limit"

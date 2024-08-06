@@ -1,0 +1,12 @@
+storage
+.idea
+*.log
+deploy/docker-compose/conf
+deploy/docker-compose/data
+logs/
+bin/*
+go.sum
+go.work
+go.work.sum
+go.work/*
+.DS_Store

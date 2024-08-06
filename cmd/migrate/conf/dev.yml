@@ -1,0 +1,84 @@
+http:
+  ip:
+  port:
+  env:
+job:
+  # xxl服务端地址
+  server-url:
+  # 任务执行 token, 必须与服务端配置一致
+  token:
+  # 执行器名称，服务端添加执行器时使用该名称
+  executor-name:
+
+db:
+  # write/read db
+  - name: wdb
+    host:
+    port: 3306
+    database:
+    username: root
+    password:
+    show-sql: true
+    params: charset=utf8mb4&parseTime=True&loc=UTC
+  # read-only db
+  - name: rdb
+    host:
+    port: 3306
+    database:
+    username: root
+    password:
+    show-sql: true
+    params: charset=utf8mb4&parseTime=True&loc=UTC
+
+# redis configuration
+redis:
+  db: 1
+  addr:
+  password:
+  tls: false
+  cluster: false
+# mogodb
+mongo:
+  host:
+  port:
+  auth-source: admin
+  username: root
+  password:
+  database:
+zap:
+  level: debug
+  prefix: ''
+  format: text
+  director: logs
+  encode-level: cap
+  stacktrace-key: stacktrace
+  max-age: 0
+  show-line: true
+  log-in-console: true
+sign:
+  key:
+auth:
+  skip-url: /favicon.ico,/job/**,/run,/kill,/log,/beat,/idleBeat,/sys/**,/demo/**
+  fixed-token-url: /login/**,/system/setting,/system/setting/*
+  fix-token:
+  captcha-key:
+i18n:
+  path: config/i18n
+portal:
+  url:
+aws-s3:
+  region:
+  access-key-id:
+  access-key-secret:
+  bucket:
+  preview-url:
+
+#mail config
+mail:
+  server:
+  supportDomain:
+
+twitter:
+  clientId:
+  clientSecret:
+  redirectUrl:
