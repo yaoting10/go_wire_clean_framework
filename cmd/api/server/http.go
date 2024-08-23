@@ -37,14 +37,14 @@ func NewServerHTTP(
 		panic(err)
 	}
 
-	// 加载 demo
-	if gin.Mode() == gin.DebugMode {
-		r.LoadHTMLGlob(conf.Asset().Page.Path + "/*")
-	}
+	// TODO 加载 demo
+	//if gin.Mode() == gin.DebugMode {
+	//	r.LoadHTMLGlob(conf.Asset().Page.Path + "/*")
+	//}
 
 	middleware.InitSkip(conf)
 	middleware.InitFixedTokenUrl(conf)
-	middleware.InitI18N(conf)
+	//middleware.InitI18N(conf)
 	//middleware.InitXxlJob(r, conf, logger)
 
 	registerMiddleWare(r, logger, conf, redis)
@@ -71,6 +71,7 @@ func registerMiddleWare(r *gin.Engine, logger *logx.Logger, conf config.Conf, re
 		middleware.AuthMiddleware(logger, conf, redis),
 		middleware.Recover(logger),
 		middleware.GinZapLogger(logger),
-		middleware.GinI18nLocalize(),
+		// TODO i18n init
+		//middleware.GinI18nLocalize(),
 	)
 }

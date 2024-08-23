@@ -106,8 +106,8 @@ func (api *UserHandler) findByUserId(c *gin.Context) {
 	email, telegram, discord := "", "", ""
 	if req.LoginUserId == usr.ID {
 		email = usr.Email
-		telegram = usr.TelegramString()
-		discord = usr.DiscordString()
+		//telegram = usr.TelegramString()
+		//discord = usr.DiscordString()
 	}
 	response.Ctx(c).OkJson(gin.H{
 		"avatar":   api.conf.AwsS3().FormatUrl(usr.Avatar),

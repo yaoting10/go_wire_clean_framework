@@ -3,7 +3,6 @@ package repository
 import (
 	"github.com/gophero/goal/gormx"
 	"goboot/internal/model"
-	"goboot/internal/repository/cond"
 	"goboot/internal/repository/repo"
 	"gorm.io/gorm"
 )
@@ -102,14 +101,14 @@ func (repo *UserRepository) GetByIdTx(db *gorm.DB, id uint) *model.User {
 
 // QueryChildLvlGTECnt 查询等级大于 p.VipLevel - 1 的下级数量
 // Deprecated: 弃用，没有考虑活跃
-func (repo *UserRepository) QueryChildLvlGTECnt(tx *gorm.DB, p *model.User) (int64, error) {
-	cnt, err := repo.FindCntTx(tx, &model.User{}, cond.New("status = ? and is_internal = 0 and parent_id = ? and vip_level >= ?",
-		model.UserStatusVerified, p.ID, p.VipLevel-1))
-	if err != nil {
-		return 0, err
-	}
-	return cnt, nil
-}
+//func (repo *UserRepository) QueryChildLvlGTECnt(tx *gorm.DB, p *model.User) (int64, error) {
+//	cnt, err := repo.FindCntTx(tx, &model.User{}, cond.New("status = ? and is_internal = 0 and parent_id = ? and vip_level >= ?",
+//		model.UserStatusVerified, p.ID, p.VipLevel-1))
+//	if err != nil {
+//		return 0, err
+//	}
+//	return cnt, nil
+//}
 
 // QueryActiveChild3rdLvl 查询所有下级中等级排名第三的活跃用户的等级，上级的 vipLvl = 排名第三的下级vipLvl + 1，如果不足三个下级，返回 -1
 // func (repo *UserRepository) QueryActiveChild3rdLvl(tx *gorm.DB, userId uint) (int, error) {
