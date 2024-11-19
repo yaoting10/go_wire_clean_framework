@@ -144,6 +144,9 @@ func (srv *AccountService) addAmount(act *model.Account, incr float64, coinType 
 	case model.LockMainCoinType:
 		act.LockMainCoin = mathx.Add(act.LockMainCoin, incr)
 		r = db.Model(act).Where("user_id = ? and version = ?", act.UserId, act.Version).Select("lock_main_coin", "version").Updates(model.Account{LockMainCoin: act.LockMainCoin, Version: act.Version + 1})
+	case model.LockSecCoinType:
+		act.LockSecCoin = mathx.Add(act.LockSecCoin, incr)
+		r = db.Model(act).Where("user_id = ? and version = ?", act.UserId, act.Version).Select("lock_sec_coin", "version").Updates(model.Account{LockSecCoin: act.LockSecCoin, Version: act.Version + 1})
 	}
 
 	if r.Error != nil || r.RowsAffected <= 0 {
@@ -176,6 +179,12 @@ func (srv *AccountService) subAmountOfType(act *model.Account, amount float64, c
 	switch coinType {
 	case model.TradeCoinTokenType:
 		if act.TradeCoin < amount {
+			return nil, errorx.NewPreferredErrf("insufficient balance")
+		}
+		act.TradeCoin = mathx.Sub(act.TradeCoin, amount)
+		r = db.Model(act).Where("user_id = ? and version = ?", act.UserId, act.Version).Select("trade_coin", "version").Updates(model.Account{TradeCoin: act.TradeCoin, Version: act.Version + 1})
+	case model.SecCoinTokenType:
+		if act.SecCoin < amount {
 			return nil, errorx.NewPreferredErrf("insufficient balance")
 		}
 		act.SecCoin = mathx.Sub(act.SecCoin, amount)
